@@ -1,0 +1,141 @@
+.signup-container {
+  background: linear-gradient(-45deg, #030303, #1a1919, #131212, #161616);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  min-height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.signup-box {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.signup-box-border {
+  position: relative;
+  padding: 3px;
+  background: linear-gradient(
+    45deg,
+    #3b0000,
+    #803900,
+    #6d6b01,
+    #185200,
+    #014b3e,
+    #021264,
+    #2d025b,
+    #530242f3,
+    #350101
+  );
+  background-size: 400%;
+  border-radius: 12px;
+  animation: animate 20s linear infinite;
+}
+
+.signup-box-border::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: inherit;
+  background-size: 400%;
+  border-radius: inherit;
+  z-index: -1;
+  animation: animate 20s linear infinite;
+  filter: blur(12px);
+}
+
+.signup-box {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.signup-content {
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  margin-top: 1.5rem;
+}
+
+.signup-box:hover .signup-content {
+  max-height: 800px;
+  opacity: 1;
+}
+
+.signup-content > div {
+  margin-bottom: 2rem;
+}
+
+.signup-content > div:last-child {
+  margin-bottom: 0;
+}
+
+.signup-title {
+  transition: all 0.3s ease;
+}
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.input:focus-within {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.input input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.input input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-btn {
+  background: linear-gradient(45deg, #ed58d2, #4ecdc4);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
