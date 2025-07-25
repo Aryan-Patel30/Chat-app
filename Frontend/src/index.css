@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+.scroll-user {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #5a5b5c transparent;
+  
+}
+.type-input {
+  border: none;
+  outline: none;
+}
