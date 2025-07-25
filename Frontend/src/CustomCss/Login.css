@@ -1,11 +1,11 @@
-.signup-container {
-  background: linear-gradient(-45deg, #030303, #1a1919, #131212, #161616);
+.login-container {
+  background: linear-gradient(-45deg, #010101, #0d0d0d, #101010, #0f0e0e);
   background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  animation: logingradient 15s ease infinite;
   min-height: 100vh;
 }
 
-@keyframes gradient {
+@keyframes logingradient {
   0% {
     background-position: 0% 50%;
   }
@@ -17,36 +17,36 @@
   }
 }
 
-.signup-box {
+.login-box {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(17, 25, 40, 0.75);
+  background-color: rgba(1, 1, 19, 0.75);
   border-radius: 12px;
   transition: all 0.5s ease-in-out;
   overflow: hidden;
 }
 
-.signup-box-border {
+.login-box-border {
   position: relative;
   padding: 3px;
   background: linear-gradient(
     45deg,
-    #3b0000,
-    #803900,
-    #6d6b01,
-    #185200,
-    #014b3e,
-    #021264,
-    #2d025b,
-    #530242f3,
-    #350101
+    #200000,
+    #2b1400,
+    #2c2b01,
+    #0a1f00,
+    #001a16,
+    #000621,
+    #100121,
+    #1f0019f3,
+    #170000
   );
   background-size: 400%;
   border-radius: 12px;
-  animation: animate 20s linear infinite;
+  animation: loginanimate 20s linear infinite;
 }
 
-.signup-box-border::before {
+.login-box-border::before {
   content: "";
   position: absolute;
   inset: -3px;
@@ -54,16 +54,16 @@
   background-size: 400%;
   border-radius: inherit;
   z-index: -1;
-  animation: animate 20s linear infinite;
+  animation: loginanimate 20s linear infinite;
   filter: blur(12px);
 }
 
-.signup-box {
+.login-box {
   position: relative;
   z-index: 1;
 }
 
-@keyframes animate {
+@keyframes loginanimate {
   0% {
     background-position: 0 0;
   }
@@ -75,27 +75,27 @@
   }
 }
 
-.signup-content {
+.login-content {
   max-height: 0;
   opacity: 0;
   transition: all 0.5s ease-in-out;
   margin-top: 1.5rem;
 }
 
-.signup-box:hover .signup-content {
+.login-box:hover .login-content {
   max-height: 800px;
   opacity: 1;
 }
 
-.signup-content > div {
+.login-content > div {
   margin-bottom: 2rem;
 }
 
-.signup-content > div:last-child {
+.login-content > div:last-child {
   margin-bottom: 0;
 }
 
-.signup-title {
+.login-title {
   transition: all 0.3s ease;
 }
 
@@ -109,7 +109,6 @@
   border-radius: 0.5rem;
   background: rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
-  outline: none;
 }
 
 .input:focus-within {
@@ -129,14 +128,18 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.submit-btn {
-  background: linear-gradient(45deg, #9a3687, #345e8e);
+.loginsubmit-btn {
+  background: linear-gradient(45deg, #3b0030, #10003c);
   background-size: 200% 200%;
-  animation: gradient 5s ease infinite;
+  animation: logingradient 5s ease infinite;
   transition: all 0.3s ease;
 }
 
-.submit-btn:hover {
+.loginsubmit-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+outline-none {
+  outline: none;
 }

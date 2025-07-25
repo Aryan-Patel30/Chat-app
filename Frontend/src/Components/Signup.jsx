@@ -1,11 +1,14 @@
 import React from "react";
 import "../CustomCss/Signup.css";
+import { useForm } from "react-hook-form";
 
 function Signup() {
+  const { register,handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
   return (
     <div className="signup-container flex justify-center items-center min-h-screen">
       <div className="signup-box-border">
-        <form className="signup-box flex flex-col gap-4 min-w-96 p-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="signup-box flex flex-col gap-4 min-w-96 p-6">
           <h1 className="signup-title text-2xl font-bold text-center text-white">
             Patel Chat<span className="text-green-500">App</span>
           </h1>
@@ -37,15 +40,15 @@ function Signup() {
                   required
                   placeholder="Username"
                   pattern="[A-Za-z][A-Za-z0-9\-]*"
-                  minlength="3"
-                  maxlength="30"
+                  minLength="3"
+                  maxLength="30"
                   title="Only letters, numbers or dash"
+                  {...register("username")}
                 />
               </label>
               <p className="validator-hint hidden">
-                Must be 3 to 30 characters
-                <br />
-                containing only letters, numbers or dash
+                Must be 3 to 30 characters, containing only letters, numbers or
+                dash
               </p>
             </div>
             {/*email */}
@@ -67,7 +70,9 @@ function Signup() {
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                   </g>
                 </svg>
-                <input type="email" placeholder="mail@gmail.com" required />
+                <input type="email" placeholder="mail@gmail.com" required 
+                 {...register("email")}
+                />
               </label>
               <div className="validator-hint hidden">
                 Enter valid email address
@@ -102,17 +107,17 @@ function Signup() {
                   type="password"
                   required
                   placeholder="Password"
-                  minlength="8"
+                  minLength="8"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                {...register("password")}
                 />
               </label>
               <p className="validator-hint hidden">
                 Must be more than 8 characters, including
                 <br />
-                At least one number <br />
-                At least one lowercase letter <br />
-                At least one uppercase letter
+                At least one number, At least one lowercase letter, At least one
+                uppercase letter
               </p>
             </div>
 
@@ -144,9 +149,10 @@ function Signup() {
                   type="password"
                   required
                   placeholder="Confirm Password"
-                  minlength="8"
+                  minLength="8"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Confirm Password must match the password"
+                  {...register("confirmPassword")}
                 />
               </label>
               <p className="validator-hint hidden">
