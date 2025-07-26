@@ -7,13 +7,14 @@ import Login from './Components/Login'
 
 function App() {
   return (
-    // <div className='flex h-screen'>
-    //   <Left/>
-    //   <Right/>
-    // </div>
-    <div>
-   <Signup />
+    <div className='flex h-screen'>
+      <Left/>
+      <Right/>
     </div>
+  //   <div>
+  //  <Signup />
+  //  <Login />
+  //   </div>
   )
 }
 

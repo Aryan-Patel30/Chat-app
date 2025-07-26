@@ -16,14 +16,14 @@ function Signup() {
   const validatePasswordMatch = (value) => {
     return value === password || "Passwords do not match";
     }
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const userInfo = {
-      fullname: data.username,
+      fullname: data.fullname,
       email: data.email,
       password: data.password,
       confirmPassword: data.confirmPassword,
     };
-    axios.post("http://localhost:3000/user/signup", userInfo)
+    await axios.post("http://localhost:3000/user/signup", userInfo)
     .then((response) => {
       if (response.data){
       alert("Signup successfully, please login now");
@@ -48,7 +48,7 @@ function Signup() {
             Sign Up
           </h2>
           <div className="signup-content">
-            {/*username */}
+            {/*fullname */}
             <div>
               <label className="input validator">
                 <svg
@@ -70,17 +70,16 @@ function Signup() {
                 <input
                   type="text"
                   required
-                  placeholder="Username"
-                  pattern="[A-Za-z][A-Za-z0-9\-]*"
+                  placeholder="Fullname"
+                  pattern="^[A-Za-z]+( [A-Za-z]+)*$"
                   minLength="3"
                   maxLength="30"
-                  title="Only letters, numbers or dash"
-                  {...register("username")}
+                  title="Must be 3 to 30 characters, containing only letters"
+                  {...register("fullname")}
                 />
               </label>
               <p className="validator-hint hidden">
-                Must be 3 to 30 characters, containing only letters, numbers or
-                dash
+                Must be 3 to 30 characters, containing only letters
               </p>
             </div>
             {/*email */}
