@@ -1,10 +1,42 @@
 import React from "react";
 import "../CustomCss/Signup.css";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 function Signup() {
-  const { register,handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+
+  const password = watch("password", "");
+  // Watch the password field to validate confirm password
+  const validatePasswordMatch = (value) => {
+    return value === password || "Passwords do not match";
+    }
+  const onSubmit = (data) => {
+    const userInfo = {
+      fullname: data.username,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    };
+    axios.post("http://localhost:3000/user/signup", userInfo)
+    .then((response) => {
+      if (response.data){
+      alert("Signup successfully, please login now");
+      }
+      localStorage.setItem("ChatApp", JSON.stringify(response.data));
+    })
+    .catch((error) => {
+    if (error.response) {
+      alert("Error: " + error.response.data.message);
+    }
+    });
+  
+  };
   return (
     <div className="signup-container flex justify-center items-center min-h-screen">
       <div className="signup-box-border">
@@ -147,17 +179,15 @@ function Signup() {
                 </svg>
                 <input
                   type="password"
-                  required
                   placeholder="Confirm Password"
-                  minLength="8"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  title="Confirm Password must match the password"
-                  {...register("confirmPassword")}
+                  {...register("confirmPassword",{required:true, validate: validatePasswordMatch})}
                 />
               </label>
-              <p className="validator-hint hidden">
-                Confirm Password must match the password
-              </p>
+              {errors.confirmPassword && (
+              <span className="text-red-500 text-sm font-semibold">
+                {errors.confirmPassword.message || "Confirm Password must match the password"}
+              </span>
+              )}
             </div>
 
             {/*Text and submit button */}
