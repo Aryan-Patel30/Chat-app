@@ -2,8 +2,11 @@ import React from "react";
 import "../CustomCss/Signup.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useAuth } from "../Context/AuthProvider";
+import { Link } from "react-router-dom";
 
 function Signup() {
+  const [authUser, setAuthUser] = useAuth();
   const {
     register,
     handleSubmit,
@@ -26,9 +29,10 @@ function Signup() {
     await axios.post("http://localhost:3000/user/signup", userInfo)
     .then((response) => {
       if (response.data){
-      alert("Signup successfully, please login now");
+      alert("Signup successfully");
       }
       localStorage.setItem("ChatApp", JSON.stringify(response.data));
+      setAuthUser(response.data);
     })
     .catch((error) => {
     if (error.response) {
@@ -199,9 +203,9 @@ function Signup() {
               </button>
               <p className="text-center text-white/70">
                 Already have an account?{" "}
-                <a href="/login" className="text-blue-400 hover:underline">
+                <Link to="/login" className="text-blue-400 hover:underline">
                   Login
-                </a>
+                </Link>
               </p>
             </div>
           </div>

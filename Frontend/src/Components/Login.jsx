@@ -2,8 +2,11 @@ import React from "react";
 import "../CustomCss/Login.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useAuth } from "../Context/AuthProvider";
+import { Link } from "react-router-dom";
 
 function Login() {
+   const [authUser, setAuthUser] = useAuth();
   const {
     register,
     handleSubmit,
@@ -21,6 +24,7 @@ function Login() {
       alert("Login successfully");
       }
       localStorage.setItem("ChatAppLogin", JSON.stringify(response.data));
+      setAuthUser(response.data);
     })
     .catch((error) => {
     if (error.response) {
@@ -119,9 +123,9 @@ function Login() {
                 </button>
                 <p className="text-center text-white/70">
                   New User?{" "}
-                  <a href="/signup" className="text-blue-400 hover:underline">
+                  <Link to ="/signup" className="text-blue-400 hover:underline">
                     Signup
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

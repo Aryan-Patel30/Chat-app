@@ -1,6 +1,7 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import createToken from '../JWT/generateToken.js';
+import e from 'express';
 
 export const signup = async (req, res) => {
     const { fullname, email, password, confirmPassword } = req.body;
@@ -82,6 +83,17 @@ export const logout = async (req, res) => {
         res.status(200).json({ message: 'Logout successful' });
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+export const getAllUser = async (req, res) => {
+    try {
+        const loggedInUserId = req.user._id; // Assuming you have middleware to set req.user
+        const filteredUsers = await User.find({_id : {$ne: loggedInUserId}}, '-password'); // Exclude password field
+        res.status(200).json(filteredUsers);
+    } catch (error) {
+        console.log("Error in getAllUser controller: " + error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }
