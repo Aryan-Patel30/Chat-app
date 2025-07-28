@@ -1,7 +1,6 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import createToken from '../JWT/generateToken.js';
-import e from 'express';
 
 export const signup = async (req, res) => {
     const { fullname, email, password, confirmPassword } = req.body;

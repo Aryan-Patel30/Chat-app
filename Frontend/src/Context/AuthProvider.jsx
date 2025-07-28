@@ -5,8 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const initialUserState =
     Cookies.get("token") ||
-    localStorage.getItem("ChatApp") ||
-    localStorage.getItem("ChatAppLogin");
+    localStorage.getItem("ChatApp");
   const [authUser, setAuthUser] = useState(
     initialUserState ? JSON.parse(initialUserState) : undefined
   );

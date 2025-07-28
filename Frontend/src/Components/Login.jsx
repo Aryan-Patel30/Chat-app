@@ -18,12 +18,12 @@ function Login() {
       email: data.email,
       password: data.password, 
     };
-    await axios.post("http://localhost:3000/user/login", userLoginInfo)
+    await axios.post("/api/user/login", userLoginInfo)
     .then((response) => {
       if (response.data){
       alert("Login successfully");
       }
-      localStorage.setItem("ChatAppLogin", JSON.stringify(response.data));
+      localStorage.setItem("ChatApp", JSON.stringify(response.data));
       setAuthUser(response.data);
     })
     .catch((error) => {

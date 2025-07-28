@@ -1,7 +1,10 @@
 import React from "react";
 import User from "./User";
+import GetAllUsers from "../../Context/GetAllUsers";
 
 function Users() {
+  const [allusers, loading] = GetAllUsers();
+  console.log(allusers);
   return (
     <div>
       <h1 className="px-8 py-2 text-white font-semibold bg-slate-800 rounded-md">

@@ -10,7 +10,10 @@ const secureRoute = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decoded.id);
+        if (!decoded) {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
+        const user = await User.findById(decoded.userId).select('-password'); // Exclude password from the user object
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -23,3 +26,5 @@ const secureRoute = async (req, res, next) => {
         res.status(401).json({ message: 'Invalid token' });
     }
 }
+
+export default secureRoute;
