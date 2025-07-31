@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import axios from "axios";
 
 const GetAllUsers = () => {
@@ -11,18 +10,9 @@ const GetAllUsers = () => {
     const fetchAllUsers = async () => {
       setLoading(true);
       try {
-        const token = Cookies.get("token");
-        console.log("Token:", token);
-        if (!token) {
-          throw new Error("No token found");
-        }
-        
         const response = await axios.get("/api/user/getAllUser", {
-            withCredentials: "include",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+          withCredentials: true, // This will send the httpOnly cookie automatically
+        });
         setAllUsers(response.data);
         setLoading(false);
       } catch (error) {

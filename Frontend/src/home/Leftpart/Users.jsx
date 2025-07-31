@@ -11,21 +11,10 @@ function Users() {
         Messages
       </h1>
       <div className="scroll-user flex flex-col overflow-y-auto h-[calc(83.15vh-9vh)] py-4 space-y-2">
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-     <User />
-    
+ 
+    {allusers.map((user,index) => (
+      <User key={index} user={user} />
+    ))}
    
      </div>
     </div>

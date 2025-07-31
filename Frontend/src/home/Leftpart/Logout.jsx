@@ -1,10 +1,34 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import { BiLogOut } from "react-icons/bi";
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../Context/AuthProvider';
 
 function Logout() {
+ const [loading, setLoading] = useState(false);
+  const [authUser, setAuthUser] = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    setLoading(true);
+   try {
+    const response = await axios.post("/api/user/logout");
+    localStorage.removeItem("ChatApp");
+    Cookies.remove("token");
+    setLoading(false);
+    alert("Logout successful");
+    navigate("/login");
+    setAuthUser(null); 
+
+     
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+}
+
   return (
     <div className='flex h-[9vh]'>
-    <div className='text-white px-6 py-4 hover:bg-slate-700 duration-300 cursor-pointer rounded-md flex items-center space-x-2'>
+    <div onClick={handleLogout} className='text-white px-6 py-4 hover:bg-slate-700 duration-300 cursor-pointer rounded-md flex items-center space-x-2'>
     <BiLogOut className='text-2xl'/>
     <h1 className='text white'>Logout</h1>
     </div>
