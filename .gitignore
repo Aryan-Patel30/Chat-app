@@ -25,4 +25,5 @@ dist-ssr
 
 Frontend/node_modules/
 Backend/node_modules/
-
+Frontend/.env
+Backend/.env
