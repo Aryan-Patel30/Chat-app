@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import useConversation  from '../zustand/useConversation';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import useConversation from "../zustand/useConversation";
+import axios from "axios";
 
 const useGetMessage = () => {
-    const [loading, setLoading] = useState(false);
-    const {messages, setMessage, selectedConversation} = useConversation();
+  const [loading, setLoading] = useState(false);
+  const { messages, setMessages, selectedConversation } = useConversation();
 
-    useEffect(() => {
-        const fetchMessages = async () => {
-            setLoading(true);
-           if (selectedConversation && selectedConversation._id) {
-                try {
-                const response = await axios.get(`/api/messages/get/${selectedConversation._id}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                setMessage(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Failed to fetch messages:', error);
-                setLoading(false);
-            }
-            }
+  useEffect(() => {
+    const fetchMessages = async () => {
+      setLoading(true);
+      if (selectedConversation && selectedConversation._id) {
+        try {
+          const response = await axios.get(
+            `/api/message/get/${selectedConversation._id}`
+          );
+          setMessages(response.data.messages);
+          setLoading(false);
+        } catch (error) {
+          console.error("Failed to fetch messages:", error);
+          setLoading(false);
         }
-        fetchMessages();
-
-    }, [selectedConversation, setMessage]);
+      }
+    };
+    fetchMessages();
+  }, [selectedConversation, setMessages]);
 
   return { loading, messages };
-    }
+};
 
-export default useGetMessage
+export default useGetMessage;

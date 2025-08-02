@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessage from "../../Context/useGetMessage.js";
 import Loading from "../../Components/Loading.jsx";
 
 function Messages() {
   const { loading, messages } = useGetMessage();
+  const messageList = messages || []; // Ensure messages is always an array
+
+  const lastMsgRef = useRef(null);
+  useEffect(() => {
+    setTimeout(() => {
+      if (lastMsgRef.current) {
+        lastMsgRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  }, [messages]);
+
   return (
     <div className="p-1 flex flex-col overflow-y-auto h-[calc(91vh-10vh)] scroll-user">
-      {loading ?(<Loading/>) : (messages.length>0 && messages.map((message)=>(
-        <Message key={message._id} message={message} />
-      ))) }
-      {!loading && messages.length === 0 && (
+      {loading ? (
+        <Loading />
+      ) : (
+        messageList.length > 0 &&
+        messageList.map((message,index) => (
+          <Message key={index} message={message} />
+        ))
+      )}
+      {!loading && messageList.length === 0 && (
         <div>
-          <p className="text-center mt-[25%]">Say! Hi to start the conversation</p>
+          <p className="text-center mt-[25%]">
+            Say! Hi to start the conversation
+          </p>
         </div>
       )}
     </div>
@@ -20,4 +38,3 @@ function Messages() {
 }
 
 export default Messages;
-
