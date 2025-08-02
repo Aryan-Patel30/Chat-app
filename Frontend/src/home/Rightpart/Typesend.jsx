@@ -21,7 +21,7 @@ function Typesend() {
       <input type="text" placeholder="Type here" className="input type-input w-full" value={message} 
       onChange={(e)=>setMessage(e.target.value)} />
     </div>
-     <button className='text-3xl'><IoSend /></button>
+     <button className='text-3xl hover:bg-slate-600 duration-300 cursor-pointer rounded-md'><IoSend /></button>
     </div>
    </form>
   )

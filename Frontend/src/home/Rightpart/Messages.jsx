@@ -23,7 +23,9 @@ function Messages() {
       ) : (
         messageList.length > 0 &&
         messageList.map((message,index) => (
-          <Message key={index} message={message} />
+          <div key={message._id} ref={lastMsgRef}>
+          <Message message={message} />
+          </div>
         ))
       )}
       {!loading && messageList.length === 0 && (
