@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessage from "../../Context/useGetMessage.js";
 import Loading from "../../Components/Loading.jsx";
+import useGetSocketMessage from "../../Context/useGetSocketMessage.js";
 
 function Messages() {
   const { loading, messages } = useGetMessage();
+  useGetSocketMessage();
   const messageList = messages || []; // Ensure messages is always an array
 
   const lastMsgRef = useRef(null);
