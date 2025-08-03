@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Signup() {
   const [authUser, setAuthUser] = useAuth();
@@ -29,14 +30,14 @@ function Signup() {
     await axios.post("/api/user/signup", userInfo)
     .then((response) => {
       if (response.data){
-      alert("Signup successfully");
+      toast.success("Signup successfully");
       }
       localStorage.setItem("ChatApp", JSON.stringify(response.data));
       setAuthUser(response.data);
     })
     .catch((error) => {
     if (error.response) {
-      alert("Error: " + error.response.data.message);
+      toast.error("Error: " + error.response.data.message);
     }
     });
   

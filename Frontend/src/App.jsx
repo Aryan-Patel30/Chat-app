@@ -6,10 +6,12 @@ import Login from "./Components/Login";
 import { useAuth } from "./Context/AuthProvider";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Loading from "./Components/Loading";
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const [authUser, setAuthUser] = useAuth();
   return (
+    <>
     <Routes>
       <Route
         path="/"
@@ -27,6 +29,8 @@ function App() {
       <Route path="/signup" element = {authUser ? < Navigate to="/"/> :<Signup />} />
       <Route path="/login"  element = {authUser ? < Navigate to="/"/> :<Login />} />
     </Routes>
+    <Toaster />
+    </>
   );
 }
 

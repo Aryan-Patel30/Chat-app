@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthProvider";
 import { useContext } from "react";
 import { SocketContext } from "../../Context/SocketContext";
+import toast from "react-hot-toast";
 
 
 function Logout() {
@@ -24,11 +25,12 @@ function Logout() {
       localStorage.removeItem("ChatApp");
       Cookies.remove("token");
       setLoading(false);
-      alert("Logout successful");
+      toast.success("Logout successful");
       navigate("/login");
       setAuthUser(null);
     } catch (error) {
       console.error("Logout failed:", error);
+      toast.error("error in logout")
     }
   };
 
