@@ -22,7 +22,6 @@ const URI = process.env.MONGODB_URI;
 
 try {
   mongoose.connect(URI)
-  console.log('Connected to MongoDB successfully');
 } catch (error) {
   console.error(error);
 }
@@ -30,6 +29,4 @@ try {
 app.use("/api/user", userRoutes);
 app.use("/api/message", messageRoutes);
 
-server.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+server.listen(PORT);

@@ -92,7 +92,6 @@ export const getAllUser = async (req, res) => {
         const filteredUsers = await User.find({_id : {$ne: loggedInUserId}}, '-password'); // Exclude password field
         res.status(200).json(filteredUsers);
     } catch (error) {
-        console.log("Error in getAllUser controller: " + error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }
