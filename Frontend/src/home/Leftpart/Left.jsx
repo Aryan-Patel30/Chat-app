@@ -1,16 +1,16 @@
-import React from 'react'
-import Search from './Search'
-import Users from './Users'
-import Logout from './Logout'
+import React from "react";
+import Search from "./Search";
+import Users from "./Users";
+import Logout from "./Logout";
 
-function Left() {
+function Left({ onUserSelect }) {
   return (
-    <div className='w-[30%] bg-black text-gray-300'>
+    <div className="w-full bg-black text-gray-300 h-full flex flex-col">
       <Search />
-      <Users/>
-      <Logout/>
+      <Users onUserSelect={onUserSelect} />
+      <Logout />
     </div>
-  )
+  );
 }
 
-export default Left
+export default Left;

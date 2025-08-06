@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function Login() {
-   const [authUser, setAuthUser] = useAuth();
+  const [authUser, setAuthUser] = useAuth();
   const {
     register,
     handleSubmit,
@@ -17,40 +17,41 @@ function Login() {
   const onSubmit = async (data) => {
     const userLoginInfo = {
       email: data.email,
-      password: data.password, 
+      password: data.password,
     };
-    await axios.post("/api/user/login", userLoginInfo)
-    .then((response) => {
-      if (response.data){
-      toast.success("Login successfully");
-      }
-      localStorage.setItem("ChatApp", JSON.stringify(response.data));
-      setAuthUser(response.data);
-    })
-    .catch((error) => {
-    if (error.response) {
-      toast.error("Error: " + error.response.data.message);
-    }
-    });
+    await axios
+      .post("/api/user/login", userLoginInfo)
+      .then((response) => {
+        if (response.data) {
+          toast.success("Login successfully");
+        }
+        localStorage.setItem("ChatApp", JSON.stringify(response.data));
+        setAuthUser(response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error("Error: " + error.response.data.message);
+        }
+      });
   };
   return (
     <div>
-      <div className="login-container flex justify-center items-center min-h-screen">
-        <div className="login-box-border">
+      <div className="login-container flex justify-center items-center min-h-screen p-4">
+        <div className="login-box-border w-full max-w-md">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="login-box flex flex-col gap-4 min-w-96 p-6"
+            className="login-box flex flex-col gap-4 p-4 lg:p-6"
           >
-            <h1 className="login-title text-2xl font-bold text-center text-white">
+            <h1 className="login-title text-xl lg:text-2xl font-bold text-center text-white">
               Patel Chat<span className="text-green-500">App</span>
             </h1>
-            <h2 className="login-title text-xl text-center text-white/80 mb-2">
+            <h2 className="login-title text-lg lg:text-xl text-center text-white/80 mb-2">
               Login
             </h2>
             <div className="login-content">
               {/*email */}
               <div>
-                <label className="input validator ">
+                <label className="input validator">
                   <svg
                     className="h-[1em] opacity-50"
                     xmlns="http://www.w3.org/2000/svg"
@@ -70,11 +71,12 @@ function Login() {
                   <input
                     type="email"
                     placeholder="mail@gmail.com"
+                    className="text-sm lg:text-base"
                     {...register("email", { required: true })}
                   />
                 </label>
                 {errors.email && (
-                  <span className="text-red-500 text-sm font-semibold">
+                  <span className="text-red-500 text-xs lg:text-sm font-semibold">
                     Email is required
                   </span>
                 )}
@@ -104,11 +106,15 @@ function Login() {
                       ></circle>
                     </g>
                   </svg>
-                  <input type="password" placeholder="Password"
-                    {...register("password", { required: true })} />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="text-sm lg:text-base"
+                    {...register("password", { required: true })}
+                  />
                 </label>
                 {errors.password && (
-                  <span className="text-red-500 text-sm font-semibold">
+                  <span className="text-red-500 text-xs lg:text-sm font-semibold">
                     Password is required
                   </span>
                 )}
@@ -118,13 +124,13 @@ function Login() {
               <div className="flex flex-col gap-4">
                 <button
                   type="submit"
-                  className="loginsubmit-btn py-2 px-4 rounded-lg text-white font-semibold hover:shadow-lg transition-all"
+                  className="loginsubmit-btn py-2 lg:py-3 px-4 rounded-lg text-white font-semibold hover:shadow-lg transition-all text-sm lg:text-base"
                 >
                   Login
                 </button>
-                <p className="text-center text-white/70">
+                <p className="text-center text-white/70 text-sm lg:text-base">
                   New User?{" "}
-                  <Link to ="/signup" className="text-blue-400 hover:underline">
+                  <Link to="/signup" className="text-blue-400 hover:underline">
                     Signup
                   </Link>
                 </p>

@@ -13,13 +13,13 @@ function Signup() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const password = watch("password", "");
   // Watch the password field to validate confirm password
   const validatePasswordMatch = (value) => {
     return value === password || "Passwords do not match";
-    }
+  };
   const onSubmit = async (data) => {
     const userInfo = {
       fullname: data.fullname,
@@ -27,29 +27,32 @@ function Signup() {
       password: data.password,
       confirmPassword: data.confirmPassword,
     };
-    await axios.post("/api/user/signup", userInfo)
-    .then((response) => {
-      if (response.data){
-      toast.success("Signup successfully");
-      }
-      localStorage.setItem("ChatApp", JSON.stringify(response.data));
-      setAuthUser(response.data);
-    })
-    .catch((error) => {
-    if (error.response) {
-      toast.error("Error: " + error.response.data.message);
-    }
-    });
-  
+    await axios
+      .post("/api/user/signup", userInfo)
+      .then((response) => {
+        if (response.data) {
+          toast.success("Signup successfully");
+        }
+        localStorage.setItem("ChatApp", JSON.stringify(response.data));
+        setAuthUser(response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error("Error: " + error.response.data.message);
+        }
+      });
   };
   return (
-    <div className="signup-container flex justify-center items-center min-h-screen">
-      <div className="signup-box-border">
-        <form onSubmit={handleSubmit(onSubmit)} className="signup-box flex flex-col gap-4 min-w-96 p-6">
-          <h1 className="signup-title text-2xl font-bold text-center text-white">
+    <div className="signup-container flex justify-center items-center min-h-screen p-4">
+      <div className="signup-box-border w-full max-w-md">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="signup-box flex flex-col gap-4 p-4 lg:p-6"
+        >
+          <h1 className="signup-title text-xl lg:text-2xl font-bold text-center text-white">
             Patel Chat<span className="text-green-500">App</span>
           </h1>
-          <h2 className="signup-title text-xl text-center text-white/80 mb-2">
+          <h2 className="signup-title text-lg lg:text-xl text-center text-white/80 mb-2">
             Sign Up
           </h2>
           <div className="signup-content">
@@ -76,6 +79,7 @@ function Signup() {
                   type="text"
                   required
                   placeholder="Fullname"
+                  className="text-sm lg:text-base"
                   pattern="^[A-Za-z]+( [A-Za-z]+)*$"
                   minLength="3"
                   maxLength="30"
@@ -83,7 +87,7 @@ function Signup() {
                   {...register("fullname")}
                 />
               </label>
-              <p className="validator-hint hidden">
+              <p className="validator-hint hidden text-xs lg:text-sm">
                 Must be 3 to 30 characters, containing only letters
               </p>
             </div>
@@ -106,11 +110,15 @@ function Signup() {
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                   </g>
                 </svg>
-                <input type="email" placeholder="mail@gmail.com" required 
-                 {...register("email")}
+                <input
+                  type="email"
+                  placeholder="mail@gmail.com"
+                  required
+                  className="text-sm lg:text-base"
+                  {...register("email")}
                 />
               </label>
-              <div className="validator-hint hidden">
+              <div className="validator-hint hidden text-xs lg:text-sm">
                 Enter valid email address
               </div>
             </div>
@@ -143,13 +151,14 @@ function Signup() {
                   type="password"
                   required
                   placeholder="Password"
+                  className="text-sm lg:text-base"
                   minLength="8"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-                {...register("password")}
+                  {...register("password")}
                 />
               </label>
-              <p className="validator-hint hidden">
+              <p className="validator-hint hidden text-xs lg:text-sm">
                 Must be more than 8 characters, including
                 <br />
                 At least one number, At least one lowercase letter, At least one
@@ -184,13 +193,18 @@ function Signup() {
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  {...register("confirmPassword",{required:true, validate: validatePasswordMatch})}
+                  className="text-sm lg:text-base"
+                  {...register("confirmPassword", {
+                    required: true,
+                    validate: validatePasswordMatch,
+                  })}
                 />
               </label>
               {errors.confirmPassword && (
-              <span className="text-red-500 text-sm font-semibold">
-                {errors.confirmPassword.message || "Confirm Password must match the password"}
-              </span>
+                <span className="text-red-500 text-xs lg:text-sm font-semibold">
+                  {errors.confirmPassword.message ||
+                    "Confirm Password must match the password"}
+                </span>
               )}
             </div>
 
@@ -198,11 +212,11 @@ function Signup() {
             <div className="flex flex-col gap-4">
               <button
                 type="submit"
-                className="submit-btn py-2 px-4 rounded-lg text-white font-semibold hover:shadow-lg transition-all"
+                className="submit-btn py-2 lg:py-3 px-4 rounded-lg text-white font-semibold hover:shadow-lg transition-all text-sm lg:text-base"
               >
                 Sign Up
               </button>
-              <p className="text-center text-white/70">
+              <p className="text-center text-white/70 text-sm lg:text-base">
                 Already have an account?{" "}
                 <Link to="/login" className="text-blue-400 hover:underline">
                   Login

@@ -1,14 +1,208 @@
-@import "tailwindcss";
-@plugin "daisyui";
-
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 .scroll-user {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #5a5b5c transparent;
-  
 }
 .type-input {
   border: none;
   outline: none;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1023px) {
+  /* Hide desktop sidebar on mobile/tablet */
+  .desktop-sidebar {
+    display: none !important;
+  }
+
+  /* Full width for main content on mobile */
+  .mobile-full-width {
+    width: 100% !important;
+  }
+
+  /* Login/Signup Mobile Styles */
+  .login-container,
+  .signup-container {
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-box,
+  .signup-box {
+    width: 95%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+  }
+
+  /* Chat Mobile Styles */
+  .chat-header {
+    height: 60px;
+    padding: 0.5rem 1rem;
+  }
+
+  .messages-container {
+    height: calc(100vh - 120px);
+  }
+
+  /* Mobile Messages component height fix */
+  .mobile-messages {
+    height: calc(100vh - 120px);
+  }
+
+  .type-send-container {
+    height: 60px;
+    padding: 0.5rem;
+  }
+
+  /* User list mobile styles */
+  .user-item {
+    padding: 0.75rem;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Ensure proper spacing on mobile */
+  .mobile-spacing {
+    padding: 0.5rem;
+  }
+
+  /* Touch-friendly buttons */
+  .mobile-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem;
+  }
+}
+
+/* Tablet specific styles */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .tablet-adjustment {
+    padding: 1rem;
+  }
+
+  .tablet-text {
+    font-size: 1rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .login-box,
+  .signup-box {
+    width: 98%;
+    margin: 0.5rem;
+  }
+
+  .form-container {
+    padding: 1rem;
+  }
+
+  .chat-header {
+    height: 50px;
+  }
+
+  .messages-container {
+    height: calc(100vh - 100px);
+  }
+
+  .type-send-container {
+    height: 50px;
+  }
+
+  /* Smaller text on very small screens */
+  .small-mobile-text {
+    font-size: 0.875rem;
+  }
+
+  /* Compact spacing */
+  .small-mobile-spacing {
+    padding: 0.25rem;
+  }
+}
+
+/* Enhanced scrollbar for mobile */
+@media (max-width: 1023px) {
+  .scroll-user {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .scroll-user::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  /* Drawer specific styles - Mobile only */
+  .drawer-side {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    pointer-events: none;
+  }
+
+  .drawer-side > * {
+    pointer-events: auto;
+  }
+
+  .drawer-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Mobile drawer content */
+  .mobile-drawer {
+    min-height: 100vh;
+    height: 100vh;
+  }
+}
+
+/* Dark theme adjustments for mobile */
+@media (max-width: 1023px) {
+  .mobile-dark-bg {
+    background-color: #1f2937;
+  }
+
+  .mobile-card-bg {
+    background-color: #374151;
+  }
+}
+
+/* Animation improvements for mobile */
+@media (max-width: 1023px) {
+  .mobile-transition {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .mobile-hover:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Welcome screen mobile adjustments */
+@media (max-width: 1023px) {
+  .welcome-mobile {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .welcome-button {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 200px;
+  }
 }

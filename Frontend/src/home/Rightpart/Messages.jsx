@@ -19,20 +19,20 @@ function Messages() {
   }, [messages]);
 
   return (
-    <div className="p-1 flex flex-col overflow-y-auto h-[calc(91vh-10vh)] scroll-user">
+    <div className="p-1 lg:p-4 flex flex-col overflow-y-auto flex-1 lg:flex-1 mobile-messages lg:h-auto scroll-user">
       {loading ? (
         <Loading />
       ) : (
         messageList.length > 0 &&
-        messageList.map((message,index) => (
+        messageList.map((message, index) => (
           <div key={message._id} ref={lastMsgRef}>
-          <Message message={message} />
+            <Message message={message} />
           </div>
         ))
       )}
       {!loading && messageList.length === 0 && (
         <div>
-          <p className="text-center mt-[25%]">
+          <p className="text-center mt-[25%] px-4 text-sm lg:text-base">
             Say! Hi to start the conversation
           </p>
         </div>
