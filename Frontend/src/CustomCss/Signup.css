@@ -88,7 +88,7 @@
 }
 
 .signup-content > div {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .signup-content > div:last-child {
@@ -167,4 +167,8 @@
     max-height: 800px;
     opacity: 1;
   }
+}
+
+.max-w-mdf {
+  max-width: 25rem; /* 448px */
 }

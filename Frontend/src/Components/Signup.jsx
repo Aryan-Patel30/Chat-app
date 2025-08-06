@@ -44,7 +44,7 @@ function Signup() {
   };
   return (
     <div className="signup-container flex justify-center items-center min-h-screen p-4">
-      <div className="signup-box-border w-full max-w-md">
+      <div className="signup-box-border w-full max-w-mdf">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="signup-box flex flex-col gap-4 p-4 lg:p-6"
@@ -55,10 +55,10 @@ function Signup() {
           <h2 className="signup-title text-lg lg:text-xl text-center text-white/80 mb-2">
             Sign Up
           </h2>
-          <div className="signup-content">
+          <div className="signup-content flex flex-col items-center">
             {/*fullname */}
-            <div>
-              <label className="input validator">
+            <div className="w-full flex flex-col items-center">
+              <label className="input validator w-full max-w-xs block">
                 <svg
                   className="h-[1.1em] opacity-50"
                   xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ function Signup() {
                   type="text"
                   required
                   placeholder="Fullname"
-                  className="text-sm lg:text-base"
+                  className="text-sm lg:text-base w-full block"
                   pattern="^[A-Za-z]+( [A-Za-z]+)*$"
                   minLength="3"
                   maxLength="30"
@@ -87,13 +87,13 @@ function Signup() {
                   {...register("fullname")}
                 />
               </label>
-              <p className="validator-hint hidden text-xs lg:text-sm">
+              <p className="validator-hint hidden text-xs lg:text-sm w-full max-w-xs block text-left mt-1">
                 Must be 3 to 30 characters, containing only letters
               </p>
             </div>
             {/*email */}
-            <div>
-              <label className="input validator">
+            <div className="w-full flex flex-col items-center mt-2">
+              <label className="input validator w-full max-w-xs block">
                 <svg
                   className="h-[1em] opacity-50"
                   xmlns="http://www.w3.org/2000/svg"
@@ -114,18 +114,18 @@ function Signup() {
                   type="email"
                   placeholder="mail@gmail.com"
                   required
-                  className="text-sm lg:text-base"
+                  className="text-sm lg:text-base w-full block"
                   {...register("email")}
                 />
               </label>
-              <div className="validator-hint hidden text-xs lg:text-sm">
+              <div className="validator-hint hidden text-xs lg:text-sm w-full max-w-xs block text-left mt-1">
                 Enter valid email address
               </div>
             </div>
 
             {/*password */}
-            <div>
-              <label className="input validator">
+            <div className="w-full flex flex-col items-center mt-2">
+              <label className="input validator w-full max-w-xs block">
                 <svg
                   className="h-[1em] opacity-50"
                   xmlns="http://www.w3.org/2000/svg"
@@ -151,14 +151,14 @@ function Signup() {
                   type="password"
                   required
                   placeholder="Password"
-                  className="text-sm lg:text-base"
+                  className="text-sm lg:text-base w-full block"
                   minLength="8"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
                   {...register("password")}
                 />
               </label>
-              <p className="validator-hint hidden text-xs lg:text-sm">
+              <p className="validator-hint hidden text-xs lg:text-sm w-full max-w-xs block text-left mt-1">
                 Must be more than 8 characters, including
                 <br />
                 At least one number, At least one lowercase letter, At least one
@@ -167,8 +167,8 @@ function Signup() {
             </div>
 
             {/*confirm password */}
-            <div>
-              <label className="input validator">
+            <div className="w-full flex flex-col items-center mt-2">
+              <label className="input validator w-full max-w-xs block">
                 <svg
                   className="h-[1em] opacity-50"
                   xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +193,7 @@ function Signup() {
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  className="text-sm lg:text-base"
+                  className="text-sm lg:text-base w-full block"
                   {...register("confirmPassword", {
                     required: true,
                     validate: validatePasswordMatch,
@@ -201,7 +201,7 @@ function Signup() {
                 />
               </label>
               {errors.confirmPassword && (
-                <span className="text-red-500 text-xs lg:text-sm font-semibold">
+                <span className="text-red-500 text-xs lg:text-sm font-semibold w-full max-w-xs block text-left mt-1">
                   {errors.confirmPassword.message ||
                     "Confirm Password must match the password"}
                 </span>
@@ -209,14 +209,14 @@ function Signup() {
             </div>
 
             {/*Text and submit button */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 w-full items-center mt-4">
               <button
                 type="submit"
-                className="submit-btn py-2 lg:py-3 px-4 rounded-lg text-white font-semibold hover:shadow-lg transition-all text-sm lg:text-base"
+                className="submit-btn py-2 lg:py-3 px-4 rounded-lg text-white font-semibold hover:shadow-lg transition-all text-sm lg:text-base w-full max-w-xs block mx-auto"
               >
                 Sign Up
               </button>
-              <p className="text-center text-white/70 text-sm lg:text-base">
+              <p className="text-center text-white/70 text-sm lg:text-base w-full max-w-xs mx-auto">
                 Already have an account?{" "}
                 <Link to="/login" className="text-blue-400 hover:underline">
                   Login

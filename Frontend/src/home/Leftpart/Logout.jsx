@@ -37,7 +37,7 @@ function Logout() {
     <div className="flex h-auto lg:h-[9vh] min-h-[60px] mt-auto">
       <div
         onClick={handleLogout}
-        className="text-white px-3 lg:px-6 py-3 lg:py-4 hover:bg-slate-700 duration-300 cursor-pointer rounded-md flex items-center space-x-2 w-full mx-2 lg:mx-0"
+        className="text-white px-3 lg:px-6 py-3 lg:py-4 hover:bg-slate-700 duration-300 cursor-pointer rounded-md flex items-center space-x-2 w-[35%] mx-2 lg:mx-0"
       >
         <BiLogOut className="text-xl lg:text-2xl" />
         <h1 className="text-sm lg:text-base">Logout</h1>

@@ -88,7 +88,7 @@
 }
 
 .login-content > div {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .login-content > div:last-child {
@@ -170,4 +170,8 @@
 
 outline-none {
   outline: none;
+}
+
+.max-w-mdf {
+  max-width: 25rem; /* 448px */
 }
