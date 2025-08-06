@@ -24,7 +24,15 @@
     width: 100% !important;
   }
 
-  /* Login/Signup Mobile Styles */
+  /* Login/Signup Mobile Styles - Force visibility */
+  .login-content,
+  .signup-content {
+    max-height: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+    margin-top: 1.5rem !important;
+  }
+
   .login-container,
   .signup-container {
     padding: 1rem;
@@ -39,6 +47,7 @@
     width: 95%;
     max-width: 400px;
     margin: 0 auto;
+    cursor: pointer;
   }
 
   .form-container {

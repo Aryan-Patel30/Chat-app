@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../CustomCss/Login.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 function Login() {
   const [authUser, setAuthUser] = useAuth();
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const {
     register,
     handleSubmit,
@@ -41,6 +42,7 @@ function Login() {
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="login-box flex flex-col gap-4 p-4 lg:p-6"
+            onClick={() => setIsFormVisible(true)}
           >
             <h1 className="login-title text-xl lg:text-2xl font-bold text-center text-white">
               Patel Chat<span className="text-green-500">App</span>
@@ -48,7 +50,11 @@ function Login() {
             <h2 className="login-title text-lg lg:text-xl text-center text-white/80 mb-2">
               Login
             </h2>
-            <div className="login-content">
+            <div
+              className={`login-content ${
+                isFormVisible ? "mobile-form-visible" : ""
+              }`}
+            >
               {/*email */}
               <div>
                 <label className="input validator">

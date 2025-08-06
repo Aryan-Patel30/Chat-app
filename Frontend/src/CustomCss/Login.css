@@ -140,6 +140,34 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Mobile-specific styles to always show content */
+@media (max-width: 1023px) {
+  .login-content {
+    max-height: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  /* Additional class for explicit mobile visibility */
+  .mobile-form-visible {
+    max-height: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Make forms touch-friendly on mobile */
+  .login-box {
+    min-height: auto;
+    cursor: pointer;
+  }
+
+  /* Ensure hover effects work on touch devices */
+  .login-box:focus-within .login-content,
+  .login-box:active .login-content {
+    max-height: 800px;
+    opacity: 1;
+  }
+}
+
 outline-none {
   outline: none;
 }
