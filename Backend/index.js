@@ -28,6 +28,10 @@ try {
   console.error(error);
 }
 
+app.use("/", (req, res) => {
+  res.send("Welcome to the ChatApp API");
+});
+
 app.use("/api/user", userRoutes);
 app.use("/api/message", messageRoutes);
 
