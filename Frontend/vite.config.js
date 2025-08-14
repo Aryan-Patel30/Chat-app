@@ -12,7 +12,7 @@ server: {
     port: 3001,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://chat-app-backend-uwxq.onrender.com',
         changeOrigin: true,
       }
     }
