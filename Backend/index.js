@@ -13,11 +13,7 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
 
 const PORT = process.env.PORT || 4000;
 const URI = process.env.MONGODB_URI;
@@ -27,10 +23,6 @@ try {
 } catch (error) {
   console.error(error);
 }
-
-app.use("/", (req, res) => {
-  res.send("Welcome to the ChatApp API");
-});
 
 app.use("/api/user", userRoutes);
 app.use("/api/message", messageRoutes);
