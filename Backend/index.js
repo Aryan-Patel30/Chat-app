@@ -17,7 +17,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3001",
-      process.env.FRONTEND_URL || "https://your-vercel-app.vercel.app",
+      process.env.FRONTEND_URL || "chat-app-nine-gilt-39.vercel.app",
     ],
     credentials: true,
   })
