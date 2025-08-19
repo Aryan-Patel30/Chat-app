@@ -6,9 +6,9 @@ const createToken = (userId, res) => {
   });
   res.cookie("token", token, {
     httpOnly: true,
-    secure: true,
-    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   });
-  return token; 
+  return token;
 };
 export default createToken;
