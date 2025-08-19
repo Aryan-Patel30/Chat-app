@@ -9,7 +9,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       "http://localhost:3001",
-      process.env.FRONTEND_URL || "https://your-vercel-app.vercel.app",
+      process.env.FRONTEND_URL || "https://chat-app-nine-gilt-39.vercel.app",
     ],
     methods: ["GET", "POST"],
     credentials: true,
