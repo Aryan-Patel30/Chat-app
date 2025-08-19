@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../utils/api";
 
 const GetAllUsers = () => {
   const [allusers, setAllUsers] = useState([]);
@@ -10,7 +10,7 @@ const GetAllUsers = () => {
     const fetchAllUsers = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/api/user/getAllUser", {
+        const response = await api.get("/api/user/getAllUser", {
           withCredentials: true, // This will send the httpOnly cookie automatically
         });
         setAllUsers(response.data);

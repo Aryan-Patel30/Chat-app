@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../CustomCss/Login.css";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../utils/api";
 import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -20,7 +20,7 @@ function Login() {
       email: data.email,
       password: data.password,
     };
-    await axios
+    await api
       .post("/api/user/login", userLoginInfo)
       .then((response) => {
         if (response.data) {

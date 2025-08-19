@@ -7,8 +7,8 @@ const SocketContext = createContext();
 export { SocketContext };
 
 export const useSocketContext = () => {
- return useContext(SocketContext);
-}
+  return useContext(SocketContext);
+};
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
@@ -17,14 +17,17 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (authUser) {
-      const newSocket = io("http://localhost:3000", {
-        query: { userId: authUser.user.id },
-      });
+      const newSocket = io(
+        import.meta.env.VITE_SOCKET_URL || "http://localhost:3000",
+        {
+          query: { userId: authUser.user.id },
+        }
+      );
       setSocket(newSocket);
 
-        newSocket.on("getOnlineUsers", (users) => {
-            setOnlineUsers(users);
-         });
+      newSocket.on("getOnlineUsers", (users) => {
+        setOnlineUsers(users);
+      });
 
       // Cleanup function to disconnect socket when component unmounts or authUser changes
       return () => {
@@ -33,15 +36,15 @@ export const SocketProvider = ({ children }) => {
         }
       };
     } else {
-        if (socket) {
-            socket.disconnect();
-            setSocket(null);
-        }
+      if (socket) {
+        socket.disconnect();
+        setSocket(null);
+      }
     }
   }, [authUser]);
 
   return (
-    <SocketContext.Provider value={{ socket , onlineUsers }}>
+    <SocketContext.Provider value={{ socket, onlineUsers }}>
       {children}
     </SocketContext.Provider>
   );

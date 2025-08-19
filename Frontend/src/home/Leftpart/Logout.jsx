@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../utils/api";
 import React, { useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import Cookies from "js-cookie";
@@ -20,7 +20,7 @@ function Logout() {
       if (socket) {
         socket.disconnect();
       }
-      const response = await axios.post("/api/user/logout");
+      const response = await api.post("/api/user/logout");
       localStorage.removeItem("ChatApp");
       Cookies.remove("token");
       setLoading(false);
